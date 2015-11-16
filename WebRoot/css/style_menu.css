@@ -1,0 +1,146 @@
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font: 12px/1 'Montserrat', sans-serif;
+  color: #333;
+  background-color: #4d80e5; 
+  overflow-x: auto;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100%;
+}
+
+.sidebar {
+  position: absolute;
+  width: 220px;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #eee;
+  box-shadow: 0 0 5px black;
+  transform: translate3d(0, 0, 0);
+  transition: transform .3s;
+  height: 100%;
+}
+
+.content.isOpen {
+  transform: translate3d(220px, 0, 0);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:before {
+  content: '\f0c9';
+  font: 42px fontawesome;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #eee;
+  border-bottom: 1px solid #222;
+  background: #2f60ce;
+}
+
+.nav li a {
+  position: relative;
+  display: block;
+  padding: 15px 15px 15px 50px;
+  font-size: 24px;
+  color: #3447f8;
+  border-bottom: 1px solid #222;
+}
+
+.nav li a:before {
+  font: 26px fontawesome;
+  position: absolute;
+  top: 14px;
+  left: 20px;
+}
+
+.nav li:nth-child(1) a:before {
+  content: '\f007';
+}
+
+.nav li:nth-child(2) a:before {
+  content: '\f15c';
+}
+
+.nav li:nth-child(3) a:before {
+  content: '\f16b';
+}
+
+.nav li:nth-child(4) a:before {
+  content: '\f07a';
+}
+
+.nav li:nth-child(5) a:before {
+  content: '\f0ad';
+}
+
+.nav li:nth-child(6) a:before {
+  content: '\f007';
+}
+
+.nav li:nth-child(7) a:before {
+  content: '\f023';
+  left: 23px;
+}
+
+/* Demo Description */
+h1 {
+  margin: 25px 0 15px;
+  font-size: 28px;
+  font-weight: 400;
+  color: #2f60ce;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f60ce;
+}
+
+.required:after {
+	font-size: 20px;
+    color: #e32;
+    content: ' *';
+    display:inline;
+}
+
+table.no-spacing {
+  border-spacing:0;
+  border-collapse: collapse; 
+}
+
+th, td {
+    white-space: nowrap;
+}
+
+.contentwrapper {
+   overflow: auto; 
+}
+

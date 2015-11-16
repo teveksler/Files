@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+<persistence-unit name="mysql" transaction-type="JTA">
+			<description>generated-persistence-unit</description>
+					<provider>org.hibernate.ejb.HibernatePersistence</provider>
+      			<class>security.Users</class>
+      			<class>security.Authorities</class>
+   			<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		</persistence-unit>
+	
+	
+		<persistence-unit name="mysql_connector" transaction-type="JTA">
+			<description>generated-persistence-unit</description>
+					<provider>org.hibernate.ejb.HibernatePersistence</provider>
+      			<class>axi.source.domain.Client</class>
+      			<class>axi.source.domain.WorkOrder</class>
+      			<class>axi.source.domain.Employee</class>
+      			<class>axi.source.domain.Inventory</class>
+      			<class>axi.source.domain.Quote</class>
+      			<class>axi.source.domain.PurchaseOrder</class>
+   			<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		</persistence-unit>
+
+	
+</persistence>

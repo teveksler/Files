@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd   http://www.springframework.org/schema/security   http://www.springframework.org/schema/security/spring-security-3.2.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<http auto-config="true">
+		<intercept-url pattern="/pages/login.jsp" />
+		<form-login authentication-failure-url="/pages/login.jsp?login_error=true"
+			login-page="/pages/login.jsp" />
+		<logout invalidate-session="true" logout-success-url="/pages/login.jsp" />
+		<remember-me key="AXI_Final_PrototypeRMKey"
+			token-validity-seconds="18000" user-service-ref="userDetailsService" />
+	</http>
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder hash="sha" />
+		</authentication-provider>
+	</authentication-manager>
+	<beans:bean
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"
+		id="userDetailsService">
+		<beans:property name="rolePrefix" value="ROLE_" />
+		<beans:property name="dataSource" ref="springSecurityDataSource" />
+		<beans:property name="usersByUsernameQuery"
+			value="SELECT username,password,enabled FROM Users WHERE username = ?" />
+		<beans:property name="authoritiesByUsernameQuery"
+			value="SELECT u.username, a.authorityname FROM Users u JOIN Users_Authorities ua on u.id = ua.user_id JOIN Authorities a on ua.authorities_id = a.id WHERE u.username = ?" />
+	</beans:bean>
+	<global-method-security> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" 
+		expression="execution(* axi.source.service.ClientService.*(..))" /> <protect-pointcut 
+		access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* axi.source.service.EmployeeService.*(..))" 
+		/> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* 
+		axi.source.service.InventoryService.*(..))" /> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" 
+		expression="execution(* axi.source.service.PurchaseOrderService.*(..))" /> 
+		<protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* 
+		axi.source.service.QuoteService.*(..))" /> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" 
+		expression="execution(* axi.source.service.WorkOrderService.*(..))" /> <protect-pointcut 
+		access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* axi.source.dao.ClientDAO.*(..))" 
+		/> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* 
+		axi.source.dao.EmployeeDAO.*(..))" /> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" 
+		expression="execution(* axi.source.dao.InventoryDAO.*(..))" /> <protect-pointcut 
+		access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* axi.source.dao.PurchaseOrderDAO.*(..))" 
+		/> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* 
+		axi.source.dao.QuoteDAO.*(..))" /> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" 
+		expression="execution(* axi.source.dao.WorkOrderDAO.*(..))" /> <protect-pointcut 
+		access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* security.UsersDAO.*(..))" 
+		/> <protect-pointcut access="IS_AUTHENTICATED_REMEMBERED" expression="execution(* 
+		security.AuthoritiesDAO.*(..))" /> </global-method-security>
+</beans:beans>

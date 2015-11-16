@@ -1,0 +1,6 @@
+#org.skyway.core settings
+#Thu Oct 22 00:24:08 EDT 2015
+version=11.0.1.me201405280815
+default.top.level.package=axi.source
+models.folder.name=.springDSL
+initialized=true
